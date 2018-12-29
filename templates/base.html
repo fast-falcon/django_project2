@@ -1,0 +1,51 @@
+{% load static %}
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.min.css">
+    <script src="{% static 'jquery.min.js' %}"></script>
+    {#    <script src="{%  static 'semantic.min.css' %}"></script>#}
+    {##}
+    {#    <script src="{%  static 'semantic.min.js' %}"></script>#}
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ostad Joo</title>
+</head>
+<body>
+<nav id="id_navbar" class="ui inverted menu">
+    <a href="/" id="id_navbar_home" class="item">استاد جو</a>
+    <div class="left menu">
+        <div class="ui right aligned category search item">
+            <form action="/search" method="get">
+                <input name="search_param" id="id_search_profiles_input" type="text" placeholder="جستجوی اساتید" style="color: black">
+                <button class="search link icon" type="submit" id="id_search_profiles_button">search</button>
+            </form>
+        </div>
+        {% if user.is_authenticated %}
+            <a href="/profile" id="id_navbar_profile" class="item">نمایه</a>
+            <a href="/logout" id="id_navbar_logout" class="item">خروج</a>
+            {#             {% if user.is_staff %}#}
+            <a href="/createmeeting/" id="id_navbar_meeting" class="item">ساخت فرصت</a>
+
+            {#             {% endif %}#}
+        {% else %}
+            <a href="/login" id="id_navbar_login" class="item">ورود</a>
+        {% endif %}
+        <a href="/signup" id="id_navbar_signup" class="item">ثبت نام</a>
+        <a href="/contactus" id="id_navbar_contact_us" class="item">تماس با ما</a>
+    </div>
+</nav>
+<div id="main-content" class="ui cented aligned text container" style="padding: 15px;">
+    {% block content %}
+
+    {% endblock %}
+</div>
+</body>
+</html>
+{% block scripts %}
+{% endblock %}

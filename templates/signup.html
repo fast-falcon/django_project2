@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="ui middle aligned center aligned grid">
+        <div class="column four wide">
+            <form dir="ltr" action="." method="post" class="ui form segment">
+                {% csrf_token %}
+                {% if usernameExists %}
+                    <p class="ui negative message">کاربری با نام کاربری وارد شده وجود دارد</p>
+                {% endif %}
+                {% if passNotEqual %}
+                    <p class="ui negative message">گذرواژه و تکرار گذرواژه یکسان نیستند</p>
+                {% endif %}
+                {% if emailExists %}
+                    <p class="ui negative message">کاربری با ایمیل وارد شده وجود دارد</p>
+                {% endif %}
+                <div class="two fields" dir="rtl">
+                    <div class="field" dir="rtl">
+                        <input type="text" id="id_first_name" name="first" placeholder="نام" required/>
+                    </div>
+                    <div class="field" dir="rtl">
+                        <input type="text" id="id_last_name" name="last" placeholder="نام خانوادگی" required/>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input type="text" id="id_username" name="username" placeholder="نام کاربری" required/>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="at icon"></i>
+                        <input type="email" id="id_email" name="email" placeholder="ایمیل" required/>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password" id="id_password1" name="pass1" placeholder="گذرواژه" required/>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password" id="id_password2" name="pass2" placeholder="تکرار گذرواژه" required/>
+                    </div>
+                </div>
+
+                <div class="grouped fields" dir="rtl">
+                    <label for="type">ثبت نام به عنوان:</label>
+                    <div class="field">
+                            <input type="radio" id="id_type_1" name="type" value="ostad" checked="" tabindex="0" class="hidden">
+                            استاد
+                    </div>
+                    <div class="field">
+                            <input type="radio" id="id_type_0" name="type" value="student" checked="" tabindex="0" class="hidden">
+                            دانشجو
+                    </div>
+                </div>
+
+                <button type="submit" id="id_submit" class="circular ui icon button green">
+                    <i class=" check icon"></i>
+                </button>
+
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            $("#id_navbar_signup").addClass("active");
+        });
+        {#$('.ui.checkbox')#}
+        {#    .checkbox()#}
+        {#;#}
+    </script>
+{% endblock %}

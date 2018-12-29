@@ -1,0 +1,27 @@
+@font-face {
+    font-family: Yekan;
+    src: url(/static/fonts/BYekan.ttf );
+}
+body
+{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Yekan, Roboto, sans-serif !important;
+    background-image: url("/static/back.jpg");
+    background-size: cover;
+}
+ h5, h1, nav
+{
+    font-family: Yekan, Roboto, sans-serif !important;
+}
+nav
+{
+    color: white;
+}
+#greeting
+{
+
+    color: whitesmoke;
+    /*margin: 14%*/
+}

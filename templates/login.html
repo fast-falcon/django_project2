@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="ui middle aligned center aligned grid">
+        <div class="column four wide">
+            <form action="." method="post" class="ui form segment " dir="ltr">
+                {% csrf_token %}
+                {% if error %}
+                    <p class="ui negative message">نام کاربری یا گذرواژه غلط است</p>
+                {% endif %}
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input type="text" id="id_username" name="username" placeholder="نام کاربری"/>
+
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password" id="id_password" name="password" placeholder="گذرواژه"/>
+
+                    </div>
+                </div>
+                <button class="circular ui fade icon button" type="submit" id="id_submit" style="background-color: #3494E6">
+                    <i class="icon white key"></i>
+                </button>
+            </form>
+            <a href="/forgot" id="id_forget_password">forgot</a>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            $("#id_navbar_login").addClass("active");
+        });
+
+    </script>
+{% endblock %}

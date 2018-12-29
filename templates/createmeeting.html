@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if falseDate %}
+        <p>تاریخ وارد شده معتبر نمی‌باشد</p>
+    {% endif %}
+    {% if falseStart %}
+        <p>زمان شروع وارد شده معتبر نمی‌باشد</p>
+    {% endif %}
+    {% if falseEnd %}
+        <p>زمان پایان وارد شده معتبر نمی‌باشد</p>
+    {% endif %}
+    {% if endBeforeStart %}
+        <p>زمان شروع باید قبل از زمان پایان فرصت باشد</p>
+    {% endif %}
+    {% if intersection %}
+        <p>بازه زمانی انتخاب شده با فرصت های قبلی شما اشتراک دارد</p>
+    {% endif %}
+    <form action="." method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="تاریخ" id="id_date" name="date">
+        <input type="text" placeholder="زمان شروع" id="id_start" name="start">
+        <input type="text" placeholder="زمان پایان" id="id_end" name="end">
+        <input type="number" placeholder="ظرفیت" id="id_student_capacity" name="capacity">
+        <button id="id_submit" type="submit">submit</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="ui middle aligned center aligned divided grid" dir="rtl">
+        <div class="column twelve wide">
+            <div class="ui segment">
+                <h1 class="ui right aligned header">نمایه</h1>
+                <a class="ui left aligned column " href="/editprofile" id="id_edit_profile">ویرایش</a>
+                <button onclick="remove()" id="id_remove_user">حذف کاربر
+                </button>
+                <div class="ui divider"></div>
+                <div class="ui grid">
+                    <div class="column right aligned four wide " dir="rtl">
+                        <div class="label-seperator">
+                            <label for="id_first_name" class="ui label">نام</label>
+                            <span id="id_first_name">{{ userShown.first_name }}</span>
+                        </div>
+                        <div class="label-seperator">
+                            <label for="id_last_name" class="ui label">نام خانوادگی</label>
+                            <span id="id_last_name">{{ userShown.last_name }}</span>
+                        </div>
+                        <div class="label-seperator">
+                            <label for="id_username" class="ui label">نام کاربری</label>
+                            <span dir="rtl" id="id_username">{{ userShown.username }}</span>
+                        </div>
+                        <div class="label-seperator">
+                            <label for="id_gender" class="ui label">جنسیت</label>
+                            <span id="id_gender">
+                            {% if userShown.profile.gender == 'M' %}
+                                مرد
+                            {% else %}
+                                زن
+                            {% endif %}
+                            </span>
+                        </div>
+                        <p>{% if userShown.is_staff %}
+                            شما به عنوان استاد وارد شده اید
+                        {% else %}
+                            شما به عنوان دانشجو وارد شده اید
+                        {% endif %}
+                        </p>
+                    </div>
+                    <div class="column center aligned eight wide ">
+                        <label for="id_bio" class="ui label">بیوگرافی</label>
+
+                        <span id="id_bio">{{ userShown.profile.bio | safe }}</span>
+                    </div>
+
+                    <div class="column left aligned four wide ">
+                        {% if userShown.profile.picture %}
+                            <img id="id_picture" style="max-width: 200px;"
+                                 src="/{{ userShown.profile.picture.url | safe }}"/>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <style>
+        .label-seperator {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.js.map"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js.map"></script>
+    <script>
+
+
+        function remove() {
+
+            console.log('sga');
+            var r = confirm('آیا از حذف اکانت خود اطمینان دارید؟')
+            if (r == true) {
+                $(location).attr('href', '/removeuser/');
+            }
+
+        }
+
+    </script>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+    <form action="." method="post">
+        {% csrf_token %}
+        <input type="text" id="id_title" name="title" maxlength="40" required>
+        <input type="text" id="id_text" name="text" minlength="10" maxlength="250" required>
+        <input type="email" id="id_email" name="email">
+        <button type="submit" id="id_submit">submit</button>
+    </form>
+{% endblock %}
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        $("#id_navbar_contact_us").addClass("active");
+    });
+
+</script>
+{% endblock %}

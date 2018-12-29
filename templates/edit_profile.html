@@ -1,0 +1,39 @@
+
+
+{% extends "base.html" %}
+{% block content %}
+    <div class="ui middle aligned center aligned grid">
+        <div class="column four wide">
+            <form id="editform" action="." method="post" enctype="multipart/form-data" class="ui form segment">
+                {% csrf_token %}
+                <input type="text" id="id_first_name" name="first" placeholder="نام" value="{{ user.first_name }}" required>
+                <input type="text" id="id_last_name" name="last" placeholder="نام خانوادگی" value="{{ user.last_name }}" required>
+
+                <select id="id_gender" multiple value="{{ user.profile.gender }}" name="gender" required>
+                    {% if user.profile.gender == 'M' %}
+                        <option value="M" selected>مرد</option>
+                        <option value="F">زن</option>
+                    {% else %}
+                        <option value="M">مرد</option>
+                        <option selected value="F">زن</option>
+                    {% endif %}
+                </select>
+                <br/>
+                <input type="file" accept="image/*" value="{{ user.profile.picture }}" name="pic" id="id_picture">
+                <button type="submit" id="id_submit">edit</button>
+            </form>
+            <textarea wrap="soft" form="editform" id="id_bio" value="" name="bio" {{ user.profile.bio }}></textarea>
+
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            $("#id_navbar_signup").addClass("active");
+        });
+        {#$('.ui.checkbox')#}
+        {#    .checkbox()#}
+        {#;#}
+    </script>
+{% endblock %}
